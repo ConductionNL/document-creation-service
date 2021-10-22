@@ -120,7 +120,7 @@ service:
 ingress:
   enabled: false
   className: "nginx"
-  hostname: documentation-creation.local
+  hostname: document-creation.local
   path: /
   pathType: ImplementationSpecific
   annotations: {}

@@ -16,6 +16,4 @@ return [
     Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class  => ['all' => true],
     Hautelook\AliceBundle\HautelookAliceBundle::class                           => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class                   => ['all' => true],
-    Conduction\SamlBundle\SamlBundle::class                                     => ['all' => true],
-    Conduction\DigidBundle\DigidBundle::class                                   => ['all' => true],
 ];
