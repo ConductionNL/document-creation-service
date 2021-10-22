@@ -1,0 +1,4 @@
+site_name: Documentation Creation Service
+repo_url: https://github.com/ConductionNL/document-creation-service/
+edit_uri: docs/
+theme: readthedocs

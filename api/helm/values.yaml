@@ -1,0 +1,154 @@
+# Default values for document-creation-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+config:
+  env: prod
+  trustedHosts: '^.+$'
+  corsAllowOrigin:
+    - '*'
+  trustedProxies:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+  version: V1.0
+  debug: 0
+  cache: true
+
+security:
+  jwt:
+    id:
+    privateKey:
+  dependencies:
+    uc:
+      apikey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
+      auth: apikey
+      location: http://user-component
+    cc:
+      apikey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
+      auth: apikey
+      location: http://contactcatalogus
+
+php:
+  repository: ghcr.io/conductionnl/document-creation-service-php
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#    limits:
+#      cpu: 400m
+#      memory: 512Mi
+#    requests:
+#      cpu: 200m
+#      memory: 256Mi
+
+
+nginx:
+  repository: ghcr.io/conductionnl/document-creation-service-nginx
+  pullPolicy: Always
+  tag: "latest"
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#    limits:
+#      cpu: 200m
+#      memory: 128Mi
+#    requests:
+#      cpu: 100m
+#      memory: 64Mi
+
+redis:
+  enabled: true
+  architecture: standalone
+  redisPort: 6379
+  auth:
+    enabled: false
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+postgresql:
+  enabled: true
+  # If plugging in an external postgresql provider, the full url to use
+  url: ''
+  image:
+    tag: 11
+    pullPolicy: IfNotPresent
+  postgresqlUsername: 'document-creation-service'
+  postgresqlPassword: '!ChangeMe!'
+  postgresqlDatabase: 'document-creation-service'
+  # Persistent Volume Storage configuration.
+  # ref: https://kubernetes.io/docs/user-guide/persistent-volumes
+  persistence:
+    enabled: true
+
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext:
+  privileged: false
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  runAsNonRoot: false
+#  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: "nginx"
+  hostname: documentation-creation.local
+  path: /
+  pathType: ImplementationSpecific
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+fixtures: {}
