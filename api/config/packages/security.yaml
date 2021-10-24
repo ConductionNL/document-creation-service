@@ -10,7 +10,7 @@ security:
             id: Conduction\CommonGroundBundle\Security\User\CommongroundUserProvider
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js|docs)/
+            pattern: ^/(_(profiler|wdt)|css|images|js|docs|api)/
             security: false
         # In order to read the docs we must allow anonymous GET reqoust on root    
         docs:
