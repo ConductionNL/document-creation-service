@@ -1,0 +1,32 @@
+App\Entity\Template:
+    json:
+        name: Json
+        description: apikey
+        type: json
+        content: https://taalhuizen-bisc.commonground.nu/api/v1/edu
+    xml:
+        name: Xml
+        description: apikey
+        type: xml
+        content: https://taalhuizen-bisc.commonground.nu/api/v1/edu
+    html:
+        name: Html
+        description: apikey
+        type: html
+        content: https://taalhuizen-bisc.commonground.nu/api/v1/edu
+    twig:
+        name: Twig
+        description: An example Twig document
+        type: twig
+        content: https://taalhuizen-bisc.commonground.nu/api/v1/edu
+    md:
+        name: MarkDown
+        description: An example markdown document
+        type: md
+        content: https://taalhuizen-bisc.commonground.nu/api/v1/edu
+    rst:
+        name: reStucturedTextcomponent
+        description: An reStucturedTextcomponent  document
+        type: rst
+        content: https://taalhuizen-bisc.commonground.nu/api/v1/edu
+

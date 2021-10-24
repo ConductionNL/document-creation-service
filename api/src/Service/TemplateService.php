@@ -115,7 +115,7 @@ class TemplateService
 
     public function getContent(Template $template, array $variables): ?string
     {
-        switch ($template->getTemplateEngine()) {
+        switch ($template->getType()) {
             case 'twig':
                 $template = $this->templating->createTemplate($template->getContent());
                 return $template->render($variables);
