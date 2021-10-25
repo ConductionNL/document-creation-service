@@ -13,14 +13,10 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class TemplateService
 {
-    /**
-     * @param string $entityName
-     * @return Entity|array
-     */
 
     public function render(Template $template): ?string
     {
-        $request = NEW Request();
+        $request = new Request();
         $variables = $this->getVariables($request);
         $contentType = $request->headers->get('Accept','application/pdf');
 

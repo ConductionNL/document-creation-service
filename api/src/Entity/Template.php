@@ -28,19 +28,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     collectionOperations={
  *          "post",
  *     		"get",
+ *          "render"={
+ *              "path"="/templates/{id}/render",
+ *              "method"="post",
+ *              "openapi_context"={
+ *                  "summary"="Render",
+ *                  "description"="Renders a given template in line with the provded data"
+ *              }
+ *          },
  *     },
  *      itemOperations={
  * 		    "get",
  * 	        "put",
  * 	        "delete",
- *          "render"={
- *              "path"="/render/{id}",
- *              "method"="get",
- *              "openapi_context" = {
- *                  "summary"="Render",
- *                  "description"="Renders a given template in line with the privded data"
- *              }
- *          },
  *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")

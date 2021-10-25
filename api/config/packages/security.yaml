@@ -10,7 +10,7 @@ security:
             id: Conduction\CommonGroundBundle\Security\User\CommongroundUserProvider
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js|docs|api)/
+            pattern: ^/(_(profiler|wdt)|css|images|js|docs)/
             security: false
         # In order to read the docs we must allow anonymous GET reqoust on root    
         docs:
@@ -45,5 +45,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
+     - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     # - { path: ^/profile, roles: ROLE_USER }
