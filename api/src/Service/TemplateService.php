@@ -38,7 +38,7 @@ class TemplateService
             case 'application/hal+json':
             case 'application/xml':
             case 'application/vnd.ms-word':
-            case 'vnd.openxmlformats-officedocument.wordprocessing':
+            case 'docx':
                 $extension = 'docx';
                 $file= $this->renderWord($template);
                 $response->setContent($file);
