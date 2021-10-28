@@ -10,6 +10,7 @@ use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
 use Dompdf\Dompdf;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Twig\Environment as Environment;
 
 class TemplateService
@@ -25,36 +26,30 @@ class TemplateService
 
     /* @todo request si reused so should be set in the constructor */
 
-    public function render(Template $template): ?string
+    public function render(Template $template, string $type)
     {
-        $request = New Request;
-        $contentType = $request->headers->get('Accept','application/pdf');
-
         $date = new \DateTime();
         $date = $date->format('Ymd_His');
         $response = New Response();
-        $response->headers->set('content-Type',$contentType);
 
-        switch ($contentType) {
+        switch ($type) {
             case 'application/ld+json':
             case 'application/json':
             case 'application/hal+json':
             case 'application/xml':
-                return $result;
             case 'application/vnd.ms-word':
             case 'vnd.openxmlformats-officedocument.wordprocessing':
                 $extension = 'docx';
                 $file= $this->renderWord($template);
                 $response->setContent($file);
                 break;
-            case 'application/pdf':
+            case 'pdf':
                 $extension = 'pdf';
                 $file = $this->renderPdf($template);
                 $response->setContent($file);
                 break;
             default;
-                /* @todo throw error */
-                break;
+                throw new BadRequestHttpException('Unsupported content type');
         }
 
         $disposition = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, "{$template->getName()}_{$date}.{$extension}");
@@ -111,7 +106,6 @@ class TemplateService
     /**
      * Get the variables that can be used for rendering
      *
-     * @param Request $request
      * @return array
      */
     public function getVariables(): array
@@ -122,9 +116,7 @@ class TemplateService
         // @todo we want to support both json and xml here */
         $body = json_decode($request->getContent(), true);
 
-        $variables = array_merge($query, $body);
-
-        return $variables;
+        return array_merge($query, $body);
     }
 
     public function getContent(Template $template): ?string

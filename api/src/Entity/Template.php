@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "post",
  *     		"get",
  *          "render"={
- *              "path"="/templates/{id}/render",
+ *              "path"="/templates/{id}/render/{type}",
  *              "method"="post",
  *              "openapi_context"={
  *                  "summary"="Render",

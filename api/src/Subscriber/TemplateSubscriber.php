@@ -13,8 +13,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Twig_Environment as Environment;
+
 
 class TemplateSubscriber implements EventSubscriberInterface
 {
@@ -36,19 +38,21 @@ class TemplateSubscriber implements EventSubscriberInterface
 
     public function template(ViewEvent $event)
     {
-        $post = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
         $route = $event->getRequest()->attributes->get('_route');
         $id = $event->getRequest()->attributes->get('id');
+        $type = $event->getRequest()->attributes->get('type');
+        $template = $this->entityManager->getRepository("App:Template")->findOneBy(['id'=>$id]);
 
-        if (!$post instanceof Template || $route != 'api_templates_render_collection' || $method != 'POST') {
+        if ($route != 'api_templates_render_collection' || $method != 'POST') {
             return;
         }
 
-        // Oke but we dont actualy want to use the post as a template but we want to use the original template, so lets pick that up
-        $template = $this->entityManager->getRepository("App:Template")->findOneBy(['id'=>$id]);
+        if ($template == null || !$template instanceof Template) {
+            throw new NotFoundHttpException('Unable to find template');
+        }
 
-        $event->setResponse($this->templateService->render($template));
+        $event->setResponse($this->templateService->render($template, $type));
         return $event;
     }
 }
