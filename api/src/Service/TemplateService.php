@@ -10,17 +10,28 @@ use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
 use Dompdf\Dompdf;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Twig\Environment as Environment;
 
 class TemplateService
 {
+    //private $request;
+    private $templating;
+
+    public function __construct(Environment $twig)
+    {
+        //$this->request = $request;
+        $this->templating = $twig;
+    }
+
+    /* @todo request si reused so should be set in the constructor */
 
     public function render(Template $template): ?string
     {
-        $request = new Request();
-        $variables = $this->getVariables($request);
+        $request = New Request;
         $contentType = $request->headers->get('Accept','application/pdf');
 
         $date = new \DateTime();
+        $date = $date->format('Ymd_His');
         $response = New Response();
         $response->headers->set('content-Type',$contentType);
 
@@ -97,8 +108,15 @@ class TemplateService
         return $dompdf->output();
     }
 
-    public function getVariables(Request $request): ?string
+    /**
+     * Get the variables that can be used for rendering
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function getVariables(): array
     {
+        $request = New Request;
         $query = $request->query->all();
 
         // @todo we want to support both json and xml here */
@@ -109,8 +127,10 @@ class TemplateService
         return $variables;
     }
 
-    public function getContent(Template $template, array $variables): ?string
+    public function getContent(Template $template): ?string
     {
+        $variables = $this->getVariables();
+
         switch ($template->getType()) {
             case 'twig':
                 $template = $this->templating->createTemplate($template->getContent());

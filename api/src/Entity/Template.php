@@ -33,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              "method"="post",
  *              "openapi_context"={
  *                  "summary"="Render",
- *                  "description"="Renders a given template in line with the provded data"
+ *                  "description"="Renders a given template in line with the provided data"
  *              }
  *          },
  *     },
@@ -104,7 +104,7 @@ class Template
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=2550)
      */
-    private string $description;
+    private ?string $description;
 
     /**
      * @var string The type of template
@@ -142,7 +142,7 @@ class Template
      * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      */
-    private string $content;
+    private ?string $content;
 
     public function getId(): ?UuidInterface
     {
