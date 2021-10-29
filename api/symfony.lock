@@ -144,6 +144,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
+    "dompdf/dompdf": {
+        "version": "v1.0.2"
+    },
     "easyrdf/easyrdf": {
         "version": "1.1.1"
     },
@@ -203,6 +206,9 @@
     "laminas/laminas-code": {
         "version": "4.4.2"
     },
+    "laminas/laminas-escaper": {
+        "version": "2.9.0"
+    },
     "league/html-to-markdown": {
         "version": "4.10.0"
     },
@@ -249,6 +255,12 @@
     "paragonie/random_compat": {
         "version": "v9.99.100"
     },
+    "phenx/php-font-lib": {
+        "version": "0.5.2"
+    },
+    "phenx/php-svg-lib": {
+        "version": "0.3.4"
+    },
     "php": {
         "version": "7.4"
     },
@@ -263,6 +275,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+    },
+    "phpoffice/phpword": {
+        "version": "0.18.2"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -311,6 +326,9 @@
     },
     "robrichards/xmlseclibs": {
         "version": "3.1.1"
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.3.1"
     },
     "sebastian/comparator": {
         "version": "4.0.6"

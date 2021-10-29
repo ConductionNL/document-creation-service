@@ -11,7 +11,7 @@ api/helm/kubeconfig*
 site/
 
 
-api/public/bundles
+api/public/bundles/
 
 gatsby/.cache/
 gatsby/node_modules/
@@ -19,7 +19,6 @@ gatsby/public/
 gatsby/npm-debug.log
 .cache/
 node_modules/
-public/
 npm-debug.log
 .DS_Store
 .idea

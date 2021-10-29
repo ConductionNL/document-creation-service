@@ -19,6 +19,7 @@ services:
     volumes:
       - ./api:/srv/api:rw,cached
       - ./api/var/certs:/var/certs:rw,cached
+      - ./fixtures:/srv/api/fixtures:rw,cached
     environment:
       - CONTAINER_REGISTRY_BASE=${CONTAINER_REGISTRY_BASE}
       - CONTAINER_PROJECT_NAME=${CONTAINER_PROJECT_NAME}
@@ -58,7 +59,7 @@ services:
       - LICENCE_NAME=${LICENCE_NAME}
       - TRUSTED_PROXIES=${TRUSTED_PROXIES}
       - TRUSTED_HOSTS=${TRUSTED_HOSTS}
-      - AUTH_ENABLED=${AUTH_ENABLED}
+      - AUTH_ENABLED=false
       - AUDITTRAIL_ENABLED=${AUDITTRAIL_ENABLED}
       - NOTIFICATION_ENABLED=${NOTIFICATION_ENABLED}
       - REDIS_HOST=redis
