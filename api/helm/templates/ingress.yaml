@@ -86,11 +86,7 @@ kind: Middleware
 metadata:
   name: {{ .Release.Name }}-middleware
   labels:
-    app.kubernetes.io/name: {{ .Release.Name }}-middleware
-    app.kubernetes.io/part-of: {{ .Release.Name }}
-    helm.sh/chart: {{ include "chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "document-creation-service.labels" . | nindent 4 }}
 spec:
   stripPrefix:
     prefixes:
