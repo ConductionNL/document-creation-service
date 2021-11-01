@@ -3,7 +3,7 @@ entries:
   document-creation-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-01T10:26:15.2772242+01:00"
+    created: "2021-11-01T10:28:47.701673+01:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -14,7 +14,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 15.3.2
     description: A Helm chart for Kubernetes
-    digest: ac6003fa02177abb2257a1ab68c1bb7e7d1adf55060831be93a9e7454ec6d29d
+    digest: df979f1de5298780187ffd04a81b76237e1c481a71353f2ca22b58379c9bae7c
     name: document-creation-service
     type: application
     urls:
@@ -25,7 +25,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.13.0
-    created: "2021-11-01T10:26:15.2802194+01:00"
+    created: "2021-11-01T10:28:47.7056744+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -58,7 +58,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.2.5
-    created: "2021-11-01T10:26:15.286219+01:00"
+    created: "2021-11-01T10:28:47.7116737+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -85,4 +85,4 @@ entries:
     urls:
     - charts/redis-15.3.2.tgz
     version: 15.3.2
-generated: "2021-11-01T10:26:15.2622239+01:00"
+generated: "2021-11-01T10:28:47.6876747+01:00"
