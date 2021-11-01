@@ -52,9 +52,6 @@ spec:
               subPath: dependencies.yaml
               name: dependencies
               readOnly: true
-            - mountPath: /var/run/certs
-              name: app-certificates
-              readOnly: true
             {{- if .Values.fixtures }}
             - mountPath: /srv/api/fixtures
               name: fixtures
