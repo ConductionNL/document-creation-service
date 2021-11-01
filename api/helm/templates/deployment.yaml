@@ -32,14 +32,6 @@ spec:
           secret:
             secretName: {{ include "document-creation-service.fullname" . }}-dependencies
             defaultMode: 420
-        - name: app-certificates
-          secret:
-            {{ if .Values.security.certificate.existingSecret }}
-            secretName: {{ .Values.security.certificate.existingSecret }}
-            {{ else }}
-            secretName: {{ include "document-creation-service.fullname" . }}-certificate
-            {{ end }}
-            defaultMode: 420
         {{- if .Values.fixtures }}
         - name: fixtures
           configMap:
@@ -115,12 +107,6 @@ spec:
                 configMapKeyRef:
                   key: url
                   name: {{ include "document-creation-service.fullname" . }}
-            {{- if or (and .Values.security.certificate.certificate .Values.security.certificate.privateKey) .Values.security.certificate.existingSecret }}
-            - name: APP_CERT
-              value: '/var/run/certs/tls.crt'
-            - name: APP_KEY
-              value: '/var/run/certs/tls.key'
-            {{- end }}
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               valueFrom:
