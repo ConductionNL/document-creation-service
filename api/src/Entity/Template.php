@@ -28,27 +28,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     collectionOperations={
  *          "post",
  *     		"get",
+ *          "render"={
+ *              "path"="/templates/{id}/render/{type}",
+ *              "method"="post",
+ *              "openapi_context"={
+ *                  "summary"="Render",
+ *                  "description"="Renders a given template in line with the provided data"
+ *              }
+ *          },
  *     },
  *      itemOperations={
  * 		    "get",
  * 	        "put",
  * 	        "delete",
- *          "get_change_logs"={
- *              "path"="/templates/{id}/change_log",
- *              "method"="get",
- *              "openapi_context" = {
- *                  "summary"="Changelogs",
- *                  "description"="Gets al the change logs for this resource"
- *              }
- *          },
- *          "get_audit_trail"={
- *              "path"="/templates/{id}/audit_trail",
- *              "method"="get",
- *              "openapi_context" = {
- *                  "summary"="Audittrail",
- *                  "description"="Gets the audit trail for this resource"
- *              }
- *          },
  *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TemplateRepository")
@@ -112,7 +104,7 @@ class Template
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=2550)
      */
-    private string $description;
+    private ?string $description;
 
     /**
      * @var string The type of template
@@ -121,12 +113,12 @@ class Template
      * @Assert\Length(
      *      max = 255
      * )
-     * @Assert\Choice({"twig", "mkdown", "rtext"})
+     * @Assert\Choice({"twig","md","rt","json","xml","html"})
      * @ApiProperty(
      *     attributes={
      *         "openapi_context"={
      *             "type"="string",
-     *             "enum"={"twig", "mkdown", "rtext"},
+     *             "enum"={"twig","md","rst","json","xml","html"},
      *             "example"="twig"
      *         }
      *     }
@@ -134,7 +126,7 @@ class Template
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
-    private string $type;
+    private string $type = "twig";
 
     /**
      * @var string The content of the template
@@ -150,7 +142,7 @@ class Template
      * @Groups({"read", "write"})
      * @ORM\Column(type="text")
      */
-    private string $content;
+    private ?string $content;
 
     public function getId(): ?UuidInterface
     {
