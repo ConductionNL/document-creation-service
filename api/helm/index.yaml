@@ -3,7 +3,7 @@ entries:
   document-creation-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-01T10:35:58.4166764+01:00"
+    created: "2021-11-01T11:11:10.699210516+01:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -14,7 +14,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 15.3.2
     description: A Helm chart for Kubernetes
-    digest: 3f7131cd8a9012bdd3e881225a4db8ba5562d68420c0a323c9b00898c40feba5
+    digest: 5c9870818e491fdf6cd34cd088d5cdcff5c658c7bd218ad42ba2b2f4a9c487e0
     name: document-creation-service
     type: application
     urls:
@@ -25,12 +25,13 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.13.0
-    created: "2021-11-01T10:35:58.4206743+01:00"
+    created: "2021-11-01T11:11:10.708928543+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
       version: 1.x.x
-    description: Chart for PostgreSQL, an object-relational database management system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    description: Chart for PostgreSQL, an object-relational database management system
+      (ORDBMS) with an emphasis on extensibility and on standards-compliance.
     digest: 871e4726cd44dddc531dc9bcdbd4fb6e7da875fbe0c6ec347bfcda33acc2d246
     home: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
     icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
@@ -58,14 +59,16 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.2.5
-    created: "2021-11-01T10:35:58.4256758+01:00"
+    created: "2021-11-01T11:11:10.719056081+01:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
       tags:
       - bitnami-common
       version: 1.x.x
-    description: Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
     digest: f8fa3b0bdaecf7f9aa1669b027c5452f7efaab21c10b0dbcf7148e17c54ac5b7
     home: https://github.com/bitnami/charts/tree/master/bitnami/redis
     icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
@@ -85,4 +88,4 @@ entries:
     urls:
     - charts/redis-15.3.2.tgz
     version: 15.3.2
-generated: "2021-11-01T10:35:58.3966758+01:00"
+generated: "2021-11-01T11:11:10.651837697+01:00"
