@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "document-creation-service.fullname" . }}
   labels:
-    {{- include "cdocument-creation-service.labels" . | nindent 4 }}
+    {{- include "document-creation-service.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
