@@ -104,6 +104,11 @@ spec:
                 configMapKeyRef:
                   key: url
                   name: {{ include "document-creation-service.fullname" . }}
+            - name: APP_APPLICATION_KEY
+              valueFrom:
+                  secretKeyRef:
+                      key: app_application_key
+                      name: {{ include "document-creation-service.fullname" . }}
             {{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               valueFrom:
